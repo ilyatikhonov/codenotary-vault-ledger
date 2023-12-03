@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package account_service;
+option go_package = "github.com/ilyatikhonov/codenotary-vault-ledger/src-go/api";
+
+message Account {
+  string number = 1;
+  string name = 2;
+  string address = 3;
+  string iban = 4;
+  string id = 5;
+}
+
+message Transaction {
+  string account_number = 1;
+  int64 amount = 2;
+  TransactionType type = 3;
+  string id = 4;
+}
+
+enum TransactionType {
+  DEPOSIT = 0;
+  WITHDRAWAL = 1;
+}
+
+/**
+ * AccountService for managing accounts and transactions
+ */
+service AccountService {
+  // ListAccounts returns a list of accounts
+  rpc ListAccounts (ListAccountsRequest) returns (ListAccountsResponse);
+
+  // ListTransactions returns a list of transactions for a given account
+  rpc ListTransactions (ListTransactionsRequest) returns (ListTransactionsResponse);
+
+  // CreateAccount creates a new account
+  rpc CreateAccount (Account) returns (CreateAccountResponse);
+
+  // CreateTransaction creates a new transaction for a given account
+  rpc CreateTransaction (Transaction) returns (CreateTransactionResponse);
+}
+
+message ListAccountsRequest {
+  int32 page_size = 1;
+  int32 page_number = 2;
+}
+
+message ListAccountsResponse {
+  int32 page_size = 1;
+  int32 page_number = 2;
+  int32 total_count = 3;
+  repeated Account accounts = 4;
+}
+
+message ListTransactionsRequest {
+  int32 page_size = 1;
+  int32 page_number = 2;
+  string account_number = 3;
+}
+
+message ListTransactionsResponse {
+  int32 page_size = 1;
+  int32 page_number = 2;
+  int32 total_count = 3;
+  repeated Transaction transactions = 4;
+}
+
+message CreateAccountResponse {
+  string id = 1;
+}
+
+message CreateTransactionResponse {
+  string id = 1;
+}
