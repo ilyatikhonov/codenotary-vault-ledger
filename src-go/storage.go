@@ -18,7 +18,7 @@ type VaultConfig struct {
 	Host                       string `default:"https://vault.immudb.io/ics/api/v1"`
 	ApiKey                     string `required:"true"`
 	LedgerName                 string `default:"default"`
-	AccountsCollectionName     string `required:"true"` //`default:"accounts"`
+	AccountsCollectionName     string `default:"accounts"`
 	TransactionsCollectionName string `default:"transactions"`
 }
 

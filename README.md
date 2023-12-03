@@ -10,7 +10,7 @@ It allows you to create accounts and transactions connected to those accounts.
 
 Run the app using Docker:
 ```bash
-docker run --rm -p 8081:8081 -e VAULT_APIKEY=<--YOUR-API-KEY-->piha/codenotary-vault-ledger:latest
+docker run --rm -p 8081:8081 -e VAULT_APIKEY=<--YOUR-API-KEY--> piha/codenotary-vault-ledger:latest
 ```
 
 Vault collections are created automatically when you first run the app.
@@ -32,7 +32,7 @@ immudb Vault REST client is generated from the OpenAPI specs.
 Repository structure:
 - [/src](./src) - web frontend
 - [/src-go](./src-go) - Go backend
-- [/server.go](./server.go) - entrypoint for the backend
+- [/server.go](./server.go) - entrypoint for the app
 
 Configuration is done via environment variables:
 - `VAULT_APIKEY` - API key for immudb Vault
